@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.treefuerza.simplepos.ui.login.view.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainActivity"
+            app:destination="@id/mainActivity" >
+            <argument
+                android:name="userId"
+                android:defaultValue="45" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.treefuerza.simplepos.ui.login.view.SignupFragment"
+        android:label="signup_fragment"
+        tools:layout="@layout/signup_fragment" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.treefuerza.simplepos.ui.main.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" >
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="71" />
+    </activity>
+</navigation>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/ordersFragment">
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.treefuerza.simplepos.ui.main.orders.OrdersFragment"
+        android:label="orders_fragment"
+        tools:layout="@layout/orders_fragment" >
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="42" />
+        <action
+            android:id="@+id/action_ordersFragment_to_clientsFragment"
+            app:destination="@id/clientsFragment" >
+            <argument
+                android:name="userId"
+                android:defaultValue="75" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/clientsFragment"
+        android:name="com.treefuerza.simplepos.ui.main.clients.ClientsFragment"
+        android:label="clients_fragment"
+        tools:layout="@layout/clients_fragment" >
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.treefuerza.simplepos.ui.main.products.ProductsFragment"
+        android:label="products_fragment"
+        tools:layout="@layout/products_fragment" />
+</navigation>
