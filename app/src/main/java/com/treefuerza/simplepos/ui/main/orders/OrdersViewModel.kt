@@ -1,16 +1,13 @@
 package com.treefuerza.simplepos.ui.main.orders
 
-import com.airbnb.mvrx.FragmentViewModelContext
 import com.airbnb.mvrx.MvRxViewModelFactory
-import com.airbnb.mvrx.ViewModelContext
-import com.treefuerza.simplepos.TreeApplication
-import com.treefuerza.simplepos.models.UserRepository
+import com.treefuerza.simplepos.data.DataRepository
 import com.treefuerza.simplepos.ui.base.MvRxViewModel
 
-class OrdersViewModel(initialState: OrdersState, private val userId: Int, private val userRepository: UserRepository) : MvRxViewModel<OrdersState>(initialState) {
+class OrdersViewModel(initialState: OrdersState, private val userId: Int, private val repo: DataRepository) : MvRxViewModel<OrdersState>(initialState) {
 
     fun fetchUser(){
-        userRepository.getUser(userId.toString()).execute {
+        repo.getUser(userId.toString()).execute {
             copy( user = it)
         }
     }

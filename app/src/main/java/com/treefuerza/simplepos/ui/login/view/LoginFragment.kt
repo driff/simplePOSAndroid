@@ -10,12 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.airbnb.mvrx.*
+import com.google.android.material.snackbar.Snackbar
 import com.treefuerza.simplepos.R
 import kotlinx.android.synthetic.main.login_fragment.*
-
-data class LoginState(@PersistState val userName: String = "",
-                      @PersistState val password: String = "",
-                      @PersistState val email: String = "") : MvRxState
 
 class LoginFragment : BaseMvRxFragment() {
 
@@ -40,10 +37,16 @@ class LoginFragment : BaseMvRxFragment() {
         }
         edtEmail.setOnFocusChangeListener { _, hasFocus -> viewModel.updateEmail(edtEmail.text.toString()) }
         edtPassword.setOnFocusChangeListener{ _, hasFocus -> viewModel.updatePassword(edtPassword.text.toString())}
+        btnLogin.setOnClickListener { viewModel.login() }
     }
 
     override fun invalidate() = withState(viewModel) {
         edtEmail.setText(it.email)
         edtPassword.setText(it.password)
+        when(it.login){
+            is Success -> {
+                Snackbar.make(parent, "Logged in!", Snackbar.LENGTH_LONG).show()
+            }
+        }
     }
 }

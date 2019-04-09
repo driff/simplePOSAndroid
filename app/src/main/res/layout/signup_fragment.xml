@@ -5,15 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+    android:id="@+id/parent"
         tools:context=".ui.login.view.SignupFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:boxBackgroundColor="@color/colorBgInput"
         android:layout_marginEnd="8dp"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,9 +48,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout4"
         android:layout_width="0dp"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:boxBackgroundColor="@color/colorBgInput"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
@@ -67,9 +68,9 @@
         android:id="@+id/textInputLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:theme="@style/TextInputLayoutAppearance"
         android:layout_marginTop="8dp"
         app:boxBackgroundMode="outline"
-        app:boxBackgroundColor="@color/colorBgInput"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
@@ -86,8 +87,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:boxBackgroundColor="@color/colorBgInput"
         app:boxBackgroundMode="outline"
+        android:theme="@style/TextInputLayoutAppearance"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout5"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout5"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
@@ -101,7 +102,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnAddUser"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

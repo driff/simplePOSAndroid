@@ -9,6 +9,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun itemDao(): ItemDao
     abstract fun clientDao(): ClientDao
-//    abstract fun userDao(): UserDao
-//    abstract fun userDao(): UserDao
+    abstract fun orderDao(): OrderDao
+    abstract fun orderDetailDao(): OrderDetailDao
+
 }
