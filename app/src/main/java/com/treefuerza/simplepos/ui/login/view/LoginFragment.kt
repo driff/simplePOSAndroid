@@ -46,6 +46,7 @@ class LoginFragment : BaseMvRxFragment() {
         when(it.login){
             is Success -> {
                 Snackbar.make(parent, "Logged in!", Snackbar.LENGTH_LONG).show()
+                findNavController().navigate(R.id.mainActivity)
             }
         }
     }

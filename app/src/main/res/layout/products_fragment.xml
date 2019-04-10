@@ -7,8 +7,9 @@
         tools:context=".ui.main.products.ProductsFragment">
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"/>
+        android:id="@+id/hello"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Hello" />
 
 </FrameLayout>
