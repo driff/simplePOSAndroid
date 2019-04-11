@@ -14,13 +14,6 @@
             android:name="userId"
             app:argType="integer"
             android:defaultValue="42" />
-        <action
-            android:id="@+id/action_ordersFragment_to_clientsFragment"
-            app:destination="@id/clientsFragment" >
-            <argument
-                android:name="userId"
-                android:defaultValue="75" />
-        </action>
     </fragment>
     <fragment
         android:id="@+id/clientsFragment"

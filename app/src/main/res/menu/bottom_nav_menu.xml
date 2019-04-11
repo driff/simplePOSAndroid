@@ -3,17 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_orders"
+        android:id="@id/ordersFragment"
         android:icon="@drawable/ic_assignment_black_24dp"
         android:title="@string/menu_text_orders"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_item"
+        android:id="@id/productsFragment"
         android:icon="@drawable/ic_local_mall_black_24dp"
         android:title="@string/menu_text_products"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_clients"
+        android:id="@id/clientsFragment"
         android:icon="@drawable/ic_face_black_24dp"
         android:title="@string/menu_text_clients"
         app:showAsAction="ifRoom" />

@@ -7,13 +7,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
+import com.airbnb.mvrx.BaseMvRxFragment
+import com.airbnb.mvrx.MvRxState
+import com.airbnb.mvrx.PersistState
 import com.treefuerza.simplepos.R
 import kotlinx.android.synthetic.main.orders_fragment.*
 
-//data class OrdersState(val user: Async<User> = Uninitialized): MvRxState
+data class OrdersState(@PersistState val selectedFragment: Int): MvRxState
 
 private const val ARG_OBJECT = "object"
-class OrdersFragment : Fragment() {
+class OrdersFragment : BaseMvRxFragment() {
+    override fun invalidate() {
+
+    }
 
     private lateinit var ordersPageAdapter: FragmentPagerAdapter
 

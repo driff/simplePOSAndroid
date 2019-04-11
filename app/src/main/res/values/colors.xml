@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6A1B9A</color>
-    <color name="colorPrimaryDark">#4A148C</color>
-    <color name="colorAccent">#7B1FA2</color>
-    <color name="colorSecondary">#00BCD4</color>
+    <color name="colorPrimary">#00BCD4</color>
+    <color name="colorPrimaryDark">#006064</color>
+    <color name="colorAccent">#FFCC80</color>
+    <color name="colorSecondary">#42A5F5</color>
     <color name="light_purple">#B39DDB</color>
     <color name="user_input_color">#C5CAE9</color>
     <color name="unfocused_color">#FFFFFF</color>
@@ -11,5 +11,6 @@
     <color name="blue">#03A9F4</color>
     <color name="green">#4CAF50</color>
     <color name="grey">#9E9E9E</color>
-    <color name="colorBottomNav">#4527A0</color>
+    <color name="colorBottomNav">#07585E</color>
+    <color name="dark_gray">#333333</color>
 </resources>
