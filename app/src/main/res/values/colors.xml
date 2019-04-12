@@ -12,5 +12,7 @@
     <color name="green">#4CAF50</color>
     <color name="grey">#9E9E9E</color>
     <color name="colorBottomNav">#07585E</color>
-    <color name="dark_gray">#333333</color>
+    <color name="dark_gray">#4E4E4E</color>
+    <color name="noColor">#00FFFFFF</color>
+    <color name="colorAccentDark">#C78729</color>
 </resources>

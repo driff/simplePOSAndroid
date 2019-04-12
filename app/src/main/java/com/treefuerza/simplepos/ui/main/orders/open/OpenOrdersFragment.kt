@@ -6,19 +6,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.airbnb.mvrx.BaseMvRxFragment
+import com.airbnb.mvrx.Success
+import com.airbnb.mvrx.fragmentViewModel
+import com.airbnb.mvrx.withState
+import com.google.android.material.snackbar.Snackbar
 
 import com.treefuerza.simplepos.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import kotlinx.android.synthetic.main.fragment_open_orders.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class OpenOrdersFragment : Fragment() {
+class OpenOrdersFragment : BaseMvRxFragment() {
+
+    val viewModel: OpenOrdersViewModel by fragmentViewModel()
+
+    override fun invalidate() = withState(viewModel) {
+        txvTitle.text = String.format("Total: $%0.2f / %d Open Orders", it.total, it.size)
+        when(it.orders){
+            is Success -> {
+                //TODO: set values to adapter
+            }
+            else -> {
+                Snackbar.make(parent, "State: ${it.orders}", Snackbar.LENGTH_LONG).show()
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

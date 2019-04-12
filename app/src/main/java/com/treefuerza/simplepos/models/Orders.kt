@@ -15,9 +15,11 @@ data class Orders(
     @ColumnInfo var tip: Double = 0.0,
     @ColumnInfo var itemsQuantity: Int = 0,
     @ColumnInfo(name = "created_at") var createdAt: String = "",
+    @ColumnInfo val size: Int = 0, //People on table
     @ColumnInfo var status: Int = 0
     //@Relation(parentColumn = "id", entityColumn = "order_id", entity = OrderDetail::class)
-   /* @Ignore var details: List<OrderDetail> = listOf()*/)
+   /* @Ignore var details: List<OrderDetail> = listOf()*/) {
+}
 
 @Dao
 interface OrderDao {
