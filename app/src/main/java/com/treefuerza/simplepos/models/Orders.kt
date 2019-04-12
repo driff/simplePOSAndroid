@@ -1,7 +1,9 @@
 package com.treefuerza.simplepos.models
 
 import androidx.room.*
+import com.treefuerza.simplepos.utils.STATUS_CREATED
 import com.treefuerza.simplepos.utils.STATUS_DELETED
+import io.reactivex.Flowable
 import io.reactivex.Single
 import java.util.*
 @Entity
@@ -25,6 +27,9 @@ data class Orders(
 interface OrderDao {
     @Query("SELECT * FROM orders ORDER BY created_at ASC")
     fun getAllFromOrder(): Single<List<Orders>>
+
+    @Query("SELECT * FROM orders WHERE status = $STATUS_CREATED ORDER BY created_at ASC")
+    fun getAllOpenOrders(): Flowable<List<Orders>>
 
     @Query("SELECT * FROM orders WHERE status <> $STATUS_DELETED")
     fun loadAllNotDeleted(): Single<List<Orders>>

@@ -21,4 +21,7 @@ class OpenOrdersViewModel(initialState: OpenOrdersState): MvRxViewModel<OpenOrde
     }
 
     private fun calculate(count: totals, order:Orders): totals = totals(count.total + order.total, count.size + 1)
+    fun fetchOpenOrders() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

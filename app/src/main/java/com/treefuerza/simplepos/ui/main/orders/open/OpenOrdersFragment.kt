@@ -43,5 +43,7 @@ class OpenOrdersFragment : BaseMvRxFragment() {
         return inflater.inflate(R.layout.fragment_open_orders, container, false)
     }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.fetchOpenOrders()
+    }
 }
