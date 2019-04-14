@@ -2,6 +2,7 @@ package com.treefuerza.simplepos.ui.main.orders.open
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,15 +27,18 @@ import javax.inject.Inject
  */
 class OpenOrdersFragment : BaseMvRxFragment() {
 
+    val TAG = this.javaClass.canonicalName
+
     val viewModel: OpenOrdersViewModel by fragmentViewModel()
     @Inject
     lateinit var adapter: OrdersAdapter
 
     override fun invalidate() = withState(viewModel) {
-        txvTitle.text = String.format("Total: $%0.2f / %d Open Orders", it.total, it.size)
+        txvTitle.text = "Total: $%.2f / %d Open Orders".format(it.total, it.size)
         when(it.orders){
             is Success -> {
-                adapter.addAll(it.orders.invoke())
+                Log.i(TAG, "Orders success")
+                adapter.replaceAll(it.orders.invoke())
             }
             else -> {
                 Snackbar.make(parent, "State: ${it.orders}", Snackbar.LENGTH_LONG).show()
@@ -62,6 +66,6 @@ class OpenOrdersFragment : BaseMvRxFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.fetchOpenOrders()
+
     }
 }

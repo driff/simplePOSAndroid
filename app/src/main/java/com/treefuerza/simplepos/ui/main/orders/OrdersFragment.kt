@@ -11,12 +11,18 @@ import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.PersistState
 import com.treefuerza.simplepos.R
+import com.treefuerza.simplepos.ui.main.orders.open.OpenOrdersFragment
 import kotlinx.android.synthetic.main.orders_fragment.*
 
 data class OrdersState(@PersistState val selectedFragment: Int): MvRxState
 
 private const val ARG_OBJECT = "object"
 class OrdersFragment : BaseMvRxFragment() {
+
+    val fragments: List<Fragment> by lazy { initFragments() }
+
+    private fun initFragments(): List<Fragment> = listOf(OpenOrdersFragment(), DemoObjectFragment())
+
     override fun invalidate() {
 
     }
@@ -32,16 +38,12 @@ class OrdersFragment : BaseMvRxFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        ordersPageAdapter = object : FragmentPagerAdapter(requireFragmentManager()) {
+        ordersPageAdapter = object : FragmentPagerAdapter(childFragmentManager) {
             override fun getPageTitle(position: Int): CharSequence? {
                 return "TAB ${position+1}"
             }
 
-            override fun getItem(position: Int): Fragment {
-                val fragment = DemoObjectFragment()
-                fragment.arguments = Bundle().apply { putInt(ARG_OBJECT, position+1) }
-                return fragment
-            }
+            override fun getItem(position: Int): Fragment = fragments[position]
 
             override fun getCount(): Int = 2
 

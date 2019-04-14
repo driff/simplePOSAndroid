@@ -9,7 +9,7 @@ import com.treefuerza.simplepos.models.Orders
 import kotlinx.android.synthetic.main.orders_recycler.view.*
 import javax.inject.Inject
 
-class OrdersAdapter @Inject constructor(private val list: MutableList<Orders>) : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
+class OrdersAdapter @Inject constructor(private var list: MutableList<Orders>) : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
 
     fun add(order: Orders) {
         list.add(order)
@@ -17,7 +17,12 @@ class OrdersAdapter @Inject constructor(private val list: MutableList<Orders>) :
     }
 
     fun addAll(orders: List<Orders>) {
-        this.list.addAll(list)
+        this.list.addAll(orders)
+        notifyDataSetChanged()
+    }
+
+    fun replaceAll(orders: List<Orders>) {
+        this.list = orders.toMutableList()
         notifyDataSetChanged()
     }
 
