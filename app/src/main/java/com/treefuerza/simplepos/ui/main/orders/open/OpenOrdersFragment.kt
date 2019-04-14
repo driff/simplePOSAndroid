@@ -13,7 +13,12 @@ import com.airbnb.mvrx.withState
 import com.google.android.material.snackbar.Snackbar
 
 import com.treefuerza.simplepos.R
+import com.treefuerza.simplepos.TreeApplication
+import com.treefuerza.simplepos.di.components.DaggerOpenOrdersComponent
+import com.treefuerza.simplepos.di.modules.OpenOrdersModule
 import kotlinx.android.synthetic.main.fragment_open_orders.*
+import kotlinx.android.synthetic.main.fragment_open_orders.view.*
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -22,12 +27,14 @@ import kotlinx.android.synthetic.main.fragment_open_orders.*
 class OpenOrdersFragment : BaseMvRxFragment() {
 
     val viewModel: OpenOrdersViewModel by fragmentViewModel()
+    @Inject
+    lateinit var adapter: OrdersAdapter
 
     override fun invalidate() = withState(viewModel) {
         txvTitle.text = String.format("Total: $%0.2f / %d Open Orders", it.total, it.size)
         when(it.orders){
             is Success -> {
-                //TODO: set values to adapter
+                adapter.addAll(it.orders.invoke())
             }
             else -> {
                 Snackbar.make(parent, "State: ${it.orders}", Snackbar.LENGTH_LONG).show()
@@ -35,12 +42,23 @@ class OpenOrdersFragment : BaseMvRxFragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        if(context!=null){
+            DaggerOpenOrdersComponent.builder()
+                .appComponent(TreeApplication.get().component)
+                .build().inject(this)
+        }
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_open_orders, container, false)
+        val v = inflater.inflate(R.layout.fragment_open_orders, container, false)
+        v.ordersRecycler.adapter = adapter
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

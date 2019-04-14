@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.models.Orders
 import kotlinx.android.synthetic.main.orders_recycler.view.*
+import javax.inject.Inject
 
-class OrdersAdapter(val list: MutableList<Orders>) : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
+class OrdersAdapter @Inject constructor(private val list: MutableList<Orders>) : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
 
     fun add(order: Orders) {
         list.add(order)
