@@ -39,7 +39,7 @@
         android:fontFamily="@font/amiko"
         android:text="Create your Account"
         android:textAlignment="center"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/secondaryDarkColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +112,7 @@
         android:contentDescription="Save information"
         android:fontFamily="@font/amiko"
         android:text="Save"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
