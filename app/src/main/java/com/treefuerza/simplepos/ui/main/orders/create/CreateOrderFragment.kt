@@ -28,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
 class CreateOrderFragment : RoundedBottomSheetDialogFragment() {
 
     override fun invalidate() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onCreateView(

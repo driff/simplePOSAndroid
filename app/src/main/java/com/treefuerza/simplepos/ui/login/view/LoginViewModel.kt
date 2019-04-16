@@ -21,7 +21,7 @@ class LoginViewModel(initialState: LoginState, val repo: DataRepository) : MvRxV
 
     companion object: MvRxViewModelFactory<LoginViewModel, LoginState> {
         override fun create(viewModelContext: ViewModelContext, state: LoginState): LoginViewModel? {
-            val repo = viewModelContext.app<TreeApplication>().component.userRepository()
+            val repo = viewModelContext.app<TreeApplication>().component.dataRepository()
             return LoginViewModel(state, repo)
         }
     }

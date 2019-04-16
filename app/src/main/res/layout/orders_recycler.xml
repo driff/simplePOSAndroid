@@ -28,7 +28,7 @@
                 tools:srcCompat="@tools:sample/avatars[2]" />
 
             <TextView
-                android:id="@+id/txvTitle"
+                android:id="@+id/txvPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -53,7 +53,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imvTable"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/txvPrice" />
 
             <TextView
                 android:id="@+id/txvTime"
@@ -63,8 +63,8 @@
                 android:backgroundTint="@color/noColor"
                 android:text=""
                 app:layout_constraintEnd_toStartOf="@+id/txvTotal"
-                app:layout_constraintStart_toStartOf="@+id/txvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/txvTitle" />
+                app:layout_constraintStart_toStartOf="@+id/txvPrice"
+                app:layout_constraintTop_toBottomOf="@+id/txvPrice" />
 
             <ImageButton
                 android:id="@+id/btnEdit"

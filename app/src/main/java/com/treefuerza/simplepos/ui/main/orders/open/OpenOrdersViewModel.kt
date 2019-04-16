@@ -15,7 +15,7 @@ class OpenOrdersViewModel(initialState: OpenOrdersState, private val repo: DataR
 
     companion object: MvRxViewModelFactory<OpenOrdersViewModel, OpenOrdersState> {
         override fun create(viewModelContext: ViewModelContext, state: OpenOrdersState): OpenOrdersViewModel? {
-            val repo = viewModelContext.app<TreeApplication>().component.userRepository()
+            val repo = viewModelContext.app<TreeApplication>().component.dataRepository()
             return OpenOrdersViewModel(state, repo)
         }
     }

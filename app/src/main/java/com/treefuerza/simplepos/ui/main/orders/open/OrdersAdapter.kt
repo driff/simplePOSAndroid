@@ -49,7 +49,7 @@ class OrdersAdapter @Inject constructor(private var list: MutableList<Orders>) :
 
         fun bind(orders: Orders) {
             view.apply {
-                txvTitle.text = String.format(context.getString(R.string.order_title), orders.client, orders.size)
+                txvPrice.text = String.format(context.getString(R.string.order_title), orders.client, orders.size)
                 txvTime.text = String.format(context.getString(R.string.order_start_date), orders.createdAt)
                 txvTotal.text = String.format("$%4.2f", orders.total)
             }

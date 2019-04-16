@@ -64,7 +64,7 @@
             android:paddingBottom="18dp">
 
             <TextView
-                android:id="@+id/txvTitle"
+                android:id="@+id/txvPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

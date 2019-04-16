@@ -16,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.TreeApplication
 import com.treefuerza.simplepos.di.components.DaggerOpenOrdersComponent
-import com.treefuerza.simplepos.di.modules.OpenOrdersModule
 import kotlinx.android.synthetic.main.fragment_open_orders.*
 import kotlinx.android.synthetic.main.fragment_open_orders.view.*
 import javax.inject.Inject
@@ -34,7 +33,7 @@ class OpenOrdersFragment : BaseMvRxFragment() {
     lateinit var adapter: OrdersAdapter
 
     override fun invalidate() = withState(viewModel) {
-        txvTitle.text = "Total: $%.2f / %d Open Orders".format(it.total, it.size)
+        txvPrice.text = "Total: $%.2f / %d Open Orders".format(it.total, it.size)
         when(it.orders){
             is Success -> {
                 Log.i(TAG, "Orders success")

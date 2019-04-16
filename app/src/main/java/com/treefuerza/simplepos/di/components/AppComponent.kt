@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
-    fun userRepository(): DataRepository
+    fun dataRepository(): DataRepository
 
     @ApplicationContext
     fun getContext(): Context

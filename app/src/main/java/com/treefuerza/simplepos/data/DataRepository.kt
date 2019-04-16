@@ -1,5 +1,6 @@
 package com.treefuerza.simplepos.data
 
+import com.treefuerza.simplepos.models.Item
 import com.treefuerza.simplepos.models.User
 import com.treefuerza.simplepos.models.UserDao
 import io.reactivex.Observable
@@ -10,4 +11,9 @@ class DataRepository (val db: AppDatabase) {
     fun addUser(user: User) = db.userDao().insertAll(user)
     fun findUserByEmail(email:String) = db.userDao().findByEmail(email)
     fun getOpenOrders() = db.orderDao().getAllOpenOrders()
+    fun getItem(code: String) = db.itemDao().findByCode(code)
+    fun getItemsByName(name: String) = db.itemDao().findByName(name)
+    fun getClientByName(name: String) = db.clientDao().findByName(name)
+    fun addItem(item:Item) = db.itemDao().insertAll(item)
+    fun getAllItems() = db.itemDao().getAll()
 }
