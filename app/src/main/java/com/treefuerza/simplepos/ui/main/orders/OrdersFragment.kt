@@ -58,7 +58,7 @@ class OrdersFragment : BaseMvRxFragment() {
                                   savedInstanceState: Bundle?): View {
             // The last two arguments ensure LayoutParams are inflated properly.
             val rootView = inflater.inflate(
-                R.layout.products_fragment, container, false)
+                R.layout.fragment_closed_orders, container, false)
             arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
                 val textView: TextView = rootView.findViewById(R.id.hello)
                 textView.text = getInt(ARG_OBJECT).toString()

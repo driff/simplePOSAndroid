@@ -7,6 +7,7 @@ import com.treefuerza.simplepos.models.Item
 import com.treefuerza.simplepos.models.OrderDetail
 import com.treefuerza.simplepos.models.Orders
 import com.treefuerza.simplepos.ui.base.MvRxViewModel
+import io.reactivex.Observable
 
 data class CreateOrderState(
     @PersistState val client: String = "",
@@ -30,8 +31,30 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
     }
 
     fun fetchProduct(code: String) {
-        repo.getItem(code).execute {
+//        repo.getItem(code).execute {
+//            copy(item = it)
+//        }
+        Observable.just(Item(name = "Test item", userId = "testuser", price = 2.5)).execute {
             copy(item = it)
+        }
+    }
+
+    fun addDetail() {
+        withState {
+            val total = it.item.invoke()?.price?: 0 * it.quantity
+            Observable.create<List<OrderDetail>> { emitter ->
+                val det = OrderDetail(orderId = "test", total = total, description = "TEST DESCRIPTION")
+                val details: MutableList<OrderDetail>
+                when(it.details){
+                    is Success -> {
+                        details = it.details.invoke().toMutableList()
+                        details.add(det)
+                    }
+                    else -> details = mutableListOf(det)
+                }
+                emitter.onNext(details.toList())
+                emitter.onComplete()
+            }.execute { dets -> copy(details = dets) }
         }
     }
 
