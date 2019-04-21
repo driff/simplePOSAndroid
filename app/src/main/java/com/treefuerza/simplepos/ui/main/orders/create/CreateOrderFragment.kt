@@ -24,6 +24,8 @@ import javax.inject.Inject
 
 class CreateOrderFragment : RoundedBottomSheetDialogFragment() {
 
+    //TODO: Move this to a normal fragment because bottomsheet with recycler is buggy
+
     override fun invalidate() = withState(viewModel) {
         when (it.item) {
             is Success -> {
