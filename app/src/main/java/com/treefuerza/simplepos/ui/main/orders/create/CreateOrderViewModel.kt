@@ -1,5 +1,6 @@
 package com.treefuerza.simplepos.ui.main.orders.create
 
+import android.util.Log
 import com.airbnb.mvrx.*
 import com.treefuerza.simplepos.TreeApplication
 import com.treefuerza.simplepos.data.DataRepository
@@ -43,7 +44,8 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
         withState {
             val total = it.item.invoke()?.price?: 0 * it.quantity
             Observable.create<List<OrderDetail>> { emitter ->
-                val det = OrderDetail(orderId = "test", total = total, description = "TEST DESCRIPTION")
+                val det = OrderDetail(orderId = "test", total = total, description = "TEST DESCRIPTION", quantity = it.quantity)
+                Log.w("Viewmodel", det.toString())
                 val details: MutableList<OrderDetail>
                 when(it.details){
                     is Success -> {
@@ -56,6 +58,10 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
                 emitter.onComplete()
             }.execute { dets -> copy(details = dets) }
         }
+    }
+
+    fun setQuantity(quantity: Double) {
+        setState { copy(quantity = quantity) }
     }
 
 }

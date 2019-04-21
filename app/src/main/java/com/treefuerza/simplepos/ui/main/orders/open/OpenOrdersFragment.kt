@@ -7,15 +7,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.Success
 import com.airbnb.mvrx.fragmentViewModel
 import com.airbnb.mvrx.withState
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 
 import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.TreeApplication
 import com.treefuerza.simplepos.di.components.DaggerOpenOrdersComponent
+import com.treefuerza.simplepos.ui.main.orders.create.CreateOrderFragment
+import kotlinx.android.synthetic.main.fragment_create_order.*
 import kotlinx.android.synthetic.main.fragment_open_orders.*
 import kotlinx.android.synthetic.main.fragment_open_orders.view.*
 import javax.inject.Inject
@@ -65,6 +69,9 @@ class OpenOrdersFragment : BaseMvRxFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        btnNewOrder.setOnClickListener {
+                val bottomSheetFragment = CreateOrderFragment()
+                bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+        }
     }
 }

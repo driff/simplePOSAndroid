@@ -1,11 +1,13 @@
 package com.treefuerza.simplepos.ui.main.orders.create
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.models.OrderDetail
+import kotlinx.android.synthetic.main.fragment_create_order.view.*
 import kotlinx.android.synthetic.main.order_detail_recycler.view.*
 import javax.inject.Inject
 
@@ -33,7 +35,7 @@ class OrderDetailsAdapter @Inject constructor(private var list: MutableList<Orde
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.orders_recycler, parent, false)
+            .inflate(R.layout.order_detail_recycler, parent, false)
         return ViewHolder(view)
     }
 
@@ -48,8 +50,9 @@ class OrderDetailsAdapter @Inject constructor(private var list: MutableList<Orde
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(detail: OrderDetail) {
+            Log.w("Recycler", detail.toString())
             view.apply {
-                txvQuantity.text = String.format(detail.quantity.toString())
+                txvQuantity.text = detail.quantity.toString()
                 txvItemName.text = String.format(detail.description)
                 txvTotal.text = String.format("$%4.2f", detail.total)
             }
