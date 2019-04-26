@@ -40,7 +40,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/txtItemCode"
+            android:id="@+id/txvItemCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -60,8 +60,8 @@
             android:text="Name:%s"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/txtItemCode"
-            app:layout_constraintStart_toStartOf="@+id/txtItemCode"
-            app:layout_constraintTop_toBottomOf="@+id/txtItemCode" />
+            app:layout_constraintEnd_toEndOf="@+id/txvItemCode"
+            app:layout_constraintStart_toStartOf="@+id/txvItemCode"
+            app:layout_constraintTop_toBottomOf="@+id/txvItemCode" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.main.products.create.CreateProductFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilProdName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtProdName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/item_name"
+            android:textColor="@color/dark_gray" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tilProdName"
+        app:layout_constraintStart_toStartOf="@+id/tilProdName"
+        app:layout_constraintTop_toBottomOf="@+id/tilProdName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtProdCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Item Code"
+            android:inputType="textShortMessage"
+            android:lines="1"
+            android:maxLength="5"
+            android:textColor="@color/dark_gray" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilProdPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tilCode"
+        app:layout_constraintStart_toStartOf="@+id/tilCode"
+        app:layout_constraintTop_toBottomOf="@+id/tilCode">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtProdPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Item Price"
+            android:inputType="number|numberDecimal"
+            android:numeric="decimal"
+            android:textColor="@color/dark_gray" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilProdTax"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tilProdPrice"
+        app:layout_constraintStart_toStartOf="@+id/tilProdPrice"
+        app:layout_constraintTop_toBottomOf="@+id/tilProdPrice">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtProdTax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Item Tax %"
+            android:inputType="numberDecimal"
+            android:textColor="@color/dark_gray" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabInsertProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:src="@drawable/ic_done_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tilProdTax"
+        app:layout_constraintStart_toStartOf="@+id/tilProdTax"
+        app:layout_constraintTop_toBottomOf="@+id/tilProdTax" />
+</androidx.constraintlayout.widget.ConstraintLayout>

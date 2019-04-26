@@ -1,7 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="fontFamily">@font/amiko</item>
+        <item name="colorPrimary">@color/primaryLightColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+    </style>
+    <style name="AppTheme2" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/amiko</item>
         <item name="colorPrimary">@color/primaryLightColor</item>
@@ -31,7 +37,7 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="TextInputLayoutAppearance" parent="Base.Widget.MaterialComponents.TextInputLayout">
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
         <!-- reference our hint & error styles -->
         <item name="boxBackgroundMode">outline</item>
         <item name="boxCornerRadiusBottomEnd">8dp</item>
@@ -47,7 +53,7 @@
         <item name="colorControlActivated">@color/blue</item>
         <item name="colorControlHighlight">@color/green</item>
     </style>
-    <style name="TextInputLayoutExtra" parent="Base.Widget.MaterialComponents.TextInputLayout">
+    <style name="TextInputLayoutExtra" parent="Widget.Design.TextInputLayout">
         <!-- reference our hint & error styles -->
         <item name="boxBackgroundMode">filled</item>
         <item name="boxCornerRadiusTopEnd">8dp</item>
@@ -63,7 +69,7 @@
         <item name="colorControlHighlight">@color/green</item>
         <item name="boxStrokeColor">@color/secondaryColor</item>
     </style>
-    <style name="TextInputEditTextExtra" parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
+    <style name="TextInputEditTextExtra" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/secondaryTextColor</item>
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
@@ -74,7 +80,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/white</item>
     </style>
-    <style name="BottomSheet" parent="ShapeAppearanceOverlay.MaterialComponents.BottomSheet.Modal">
+    <style name="BottomSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:background">@drawable/bg_bottom_sheet_dialog_fragment</item>
     </style>
 
@@ -82,7 +88,7 @@
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
-    <style name="TextInputEditTextAppearance" parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
+    <style name="TextInputEditTextAppearance" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/secondaryDarkColor</item>
         <item name="android:textColorPrimary">@color/white</item>

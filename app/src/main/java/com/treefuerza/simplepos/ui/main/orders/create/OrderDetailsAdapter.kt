@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.models.OrderDetail
-import kotlinx.android.synthetic.main.fragment_create_order.view.*
+import kotlinx.android.synthetic.main.fragment_edit_order.view.*
 import kotlinx.android.synthetic.main.order_detail_recycler.view.*
 import javax.inject.Inject
 

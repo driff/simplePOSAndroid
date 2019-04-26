@@ -41,9 +41,6 @@
                 android:orientation="horizontal"
                 android:weightSum="4"
                 app:boxBackgroundMode="none"
-                app:endIconContentDescription="@string/search_action"
-                app:endIconDrawable="@drawable/ic_search_24dp"
-                app:endIconMode="custom"
                 app:layout_constraintEnd_toEndOf="@+id/tilClient"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="@+id/tilClient"
@@ -62,12 +59,13 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/fabAddProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:src="@drawable/ic_plus_one_black_24dp"
         android:translationY="-16dp"
+        app:backgroundTint="@color/primaryLightColor"
         app:elevation="8dp"
         app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="@+id/cardView2"
@@ -75,13 +73,15 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

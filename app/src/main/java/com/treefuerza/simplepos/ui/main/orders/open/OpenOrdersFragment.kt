@@ -19,7 +19,7 @@ import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.TreeApplication
 import com.treefuerza.simplepos.di.components.DaggerOpenOrdersComponent
 import com.treefuerza.simplepos.ui.main.orders.create.CreateOrderFragment
-import kotlinx.android.synthetic.main.fragment_create_order.*
+import kotlinx.android.synthetic.main.fragment_edit_order.*
 import kotlinx.android.synthetic.main.fragment_open_orders.*
 import kotlinx.android.synthetic.main.fragment_open_orders.view.*
 import javax.inject.Inject
@@ -69,9 +69,6 @@ class OpenOrdersFragment : BaseMvRxFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btnNewOrder.setOnClickListener {
-                val bottomSheetFragment = CreateOrderFragment()
-                bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
-        }
+
     }
 }
