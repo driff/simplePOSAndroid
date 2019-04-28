@@ -49,7 +49,7 @@ class ProductsAdapter @Inject constructor(private var list: MutableList<Item>) :
 
         fun bind(items: Item) {
             view.apply {
-                txvPrice.text = String.format("$$.2f", items.price)
+                txvPrice.text = String.format("$%.2f", items.price)
                 txvName.text = items.name
                 txvItemCode.text = "Code: ${items.code}"
             }
