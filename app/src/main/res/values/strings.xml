@@ -13,4 +13,8 @@
     <string name="item_name">Item Name</string>
     <string name="total_format">$%.2f</string>
     <string name="quantity_format">%f</string>
+    <string name="item_code">Item Code</string>
+    <string name="item_price">Item Price</string>
+    <string name="item_tax">Item Tax %</string>
+    <string name="add_product_error_msg">Check the info supplied, something seems to be missing or out of bounds</string>
 </resources>

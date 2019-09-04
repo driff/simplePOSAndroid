@@ -26,7 +26,6 @@ class ProductsViewModel(initialState: ProductsState, private val repo: DataRepos
     fun fetchProducts(){
         this.repo.getAllItems().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .toObservable()
             .execute { copy(products = it) }
     }
 

@@ -52,10 +52,8 @@ class CreateProductViewModel(initialState: CreateProductState, val repo: DataRep
 
     fun createItem(name: String, code: String, price: Double, tax: Double) {
         withState {
-            if(code.isNotEmpty() && name.isNotEmpty() && price > 0 && tax >= 0){
-                repo.addItem(Item(code = code, price = price, taxValue = tax, name = name, createdAt = ZonedDateTime.now().toString(), userId = ""))
-                Observable.just(true).execute { done -> copy(done = done) }
-            }
+            repo.addItem(Item(code = code, price = price, taxValue = tax, name = name, createdAt = ZonedDateTime.now().toString(), userId = ""))
+            Observable.just(true).execute { done -> copy(done = done) }
         }
     }
 

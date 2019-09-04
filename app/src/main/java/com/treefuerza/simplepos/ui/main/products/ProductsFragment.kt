@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.Success
 import com.airbnb.mvrx.fragmentViewModel
@@ -50,7 +54,6 @@ class ProductsFragment : BaseMvRxFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val v = inflater.inflate(R.layout.products_fragment, container, false)
-        v.list.adapter = adapter
         return v
     }
 
@@ -64,11 +67,29 @@ class ProductsFragment : BaseMvRxFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        fabAddProduct.setOnClickListener {
-            val bottomSheetFragment = CreateProductFragment()
-            bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
-            list.adapter = adapter
-        }
+        list.adapter = adapter
+        list.layoutManager = GridLayoutManager(requireContext(), 3)
+        edtItemCode.setOnTouchListener(this::handleItemSearch)
+        fabAddProduct.setOnClickListener(this::addProductListener)
     }
 
+    private fun addProductListener(v: View) {
+        val bottomSheetFragment = CreateProductFragment()
+        bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+    }
+
+    private fun handleItemSearch(view: View, event: MotionEvent): Boolean {
+        val DRAWABLE_LEFT = 0
+        val DRAWABLE_TOP = 1
+        val DRAWABLE_RIGHT = 2
+        val DRAWABLE_BOTTOM = 3
+        if(event.action == MotionEvent.ACTION_UP) {
+            if(event.rawX >= (edtItemCode.right - edtItemCode.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
+                // your action here
+                Toast.makeText(requireContext(), "Works!", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return false
+    }
 }

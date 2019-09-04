@@ -14,6 +14,6 @@ class DataRepository (val db: AppDatabase) {
     fun getItem(code: String) = db.itemDao().findByCode(code)
     fun getItemsByName(name: String) = db.itemDao().findByName(name)
     fun getClientByName(name: String) = db.clientDao().findByName(name)
-    fun addItem(item:Item) = db.itemDao().insertAll(item)
+    fun addItem(item:Item) = db.itemDao().insert(item)
     fun getAllItems() = db.itemDao().getAll()
 }

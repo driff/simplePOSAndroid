@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.airbnb.mvrx.Success
 import com.airbnb.mvrx.fragmentViewModel
 import com.airbnb.mvrx.withState
 import com.jakewharton.rxbinding3.widget.afterTextChangeEvents
@@ -14,11 +16,6 @@ import com.treefuerza.simplepos.utils.RoundedBottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_create_product.*
 import java.util.concurrent.TimeUnit
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -31,6 +28,9 @@ class CreateProductFragment : RoundedBottomSheetDialogFragment() {
         edtProdName.setText(it.name)
         edtProdPrice.setText(it.price.toString())
         edtProdTax.setText(it.tax.toString())
+        when(it.done) {
+            is Success -> if( it.done.invoke() ) this.dismiss()
+        }
     }
 
     private val viewModel: CreateProductViewModel by fragmentViewModel()
@@ -48,13 +48,23 @@ class CreateProductFragment : RoundedBottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        fabInsertProduct.setOnClickListener { viewModel.createItem(edtProdName.text.toString(),
-            edtProdCode.text.toString(), edtProdPrice.text.toString().toDouble(), edtProdTax.text.toString().toDouble())
-        }
-//        viewModel.setName(edtProdName.afterTextChangeEvents().skipInitialValue()
-//            .skip(500, TimeUnit.MILLISECONDS).map { edtProdName.text?.toString()?: "" })
-//        viewModel.setCode(edtProdName.afterTextChangeEvents().skip(500, TimeUnit.MILLISECONDS).map { it.editable?.toString()?: "" })
-//        viewModel.setPrice(edtProdName.afterTextChangeEvents().skip(500, TimeUnit.MILLISECONDS).map { it.editable?.toString()?.toDouble()?: 0.0})
-//        viewModel.setTax(edtProdName.afterTextChangeEvents().skip(500, TimeUnit.MILLISECONDS).map { it.editable?.toString()?.toDouble()?: 0.0})
+        fabInsertProduct.setOnClickListener(this::addProductListener)
     }
+
+    private fun addProductListener(view: View) {
+        val name = edtProdName.text?.toString()?: ""
+        val code = edtProdCode.text?.toString()?: ""
+        val price = edtProdPrice.text?.toString()?.toDouble()?: 0.0
+        val tax = edtProdTax.text?.toString()?.toDouble()?: 0.0
+        if (price >= 0 && name.isNotEmpty() && code.isNotEmpty()) {
+            viewModel.createItem(name, code, price, tax)
+        } else {
+            showToast(getString(R.string.add_product_error_msg))
+        }
+    }
+
+    private fun showToast(msg: String){
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
+    }
+
 }

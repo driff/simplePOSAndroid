@@ -42,9 +42,10 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
 
     fun addDetail() {
         withState {
-            val total = it.item.invoke()?.price?: 0 * it.quantity
+            val item = it.item.invoke() ?: return@withState
+            val total = item.price * it.quantity
             Observable.create<List<OrderDetail>> { emitter ->
-                val det = OrderDetail(orderId = "test", total = total, description = "TEST DESCRIPTION", quantity = it.quantity)
+                val det = OrderDetail(orderId = "test", total = total, description = "TEST DESCRIPTION", quantity = it.quantity, itemId = item.id)
                 Log.w("Viewmodel", det.toString())
                 val details: MutableList<OrderDetail>
                 when(it.details){
