@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.navigation.findNavController
 import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.PersistState
@@ -48,7 +49,13 @@ class OrdersFragment : BaseMvRxFragment() {
             override fun getCount(): Int = 2
 
         }
+        fab.setOnClickListener(this::createNewOrder)
         pager.adapter = ordersPageAdapter
+    }
+
+
+    private fun createNewOrder(view: View) {
+        view.findNavController().navigate(R.id.action_ordersFragment_to_createOrderFragment)
     }
 
     class DemoObjectFragment : Fragment() {

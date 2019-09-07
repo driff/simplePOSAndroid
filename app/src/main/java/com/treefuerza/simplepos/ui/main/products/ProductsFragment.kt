@@ -37,10 +37,6 @@ class ProductsFragment : BaseMvRxFragment() {
                 Log.i(TAG, "Products list Length: ${ls.size}")
                 adapter.replaceAll(ls)
             }
-            else -> {
-                Log.w(TAG, it.products.toString())
-                Snackbar.make(parent, "State: ${it.products}", Snackbar.LENGTH_LONG).show()
-            }
         }
     }
 
@@ -86,7 +82,6 @@ class ProductsFragment : BaseMvRxFragment() {
         if(event.action == MotionEvent.ACTION_UP) {
             if(event.rawX >= (edtItemCode.right - edtItemCode.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
                 // your action here
-                Toast.makeText(requireContext(), "Works!", Toast.LENGTH_SHORT).show()
                 return true
             }
         }

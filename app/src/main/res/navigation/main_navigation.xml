@@ -37,5 +37,14 @@
         android:id="@+id/createOrderFragment"
         android:name="com.treefuerza.simplepos.ui.main.orders.create.CreateOrderFragment"
         android:label="fragment_create_order"
-        tools:layout="@layout/fragment_edit_order" />
+        tools:layout="@layout/fragment_edit_order" >
+        <action
+            android:id="@+id/action_createOrderFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/ordersFragment" />
+    </fragment>
 </navigation>

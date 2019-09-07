@@ -37,7 +37,7 @@ class OpenOrdersFragment : BaseMvRxFragment() {
     lateinit var adapter: OrdersAdapter
 
     override fun invalidate() = withState(viewModel) {
-        txvPrice.text = "Total: $%.2f / %d Open Orders".format(it.total, it.size)
+        txvPrice.text = "Total: $%.2f / %d Open Orders".format(it.total, it.size) // TODO: split this
         when(it.orders){
             is Success -> {
                 Log.i(TAG, "Orders success")

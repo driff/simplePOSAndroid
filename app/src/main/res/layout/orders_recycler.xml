@@ -3,28 +3,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+        app:cardElevation="4dp"
         app:contentPadding="@dimen/card_content_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent">
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/btnEdit"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/round_vector"
+                android:backgroundTint="@color/design_default_color_primary_dark"
+                android:padding="4dp"
+                android:src="@drawable/ic_edit_24dp"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/timeIcon"
+                app:layout_constraintTop_toBottomOf="@+id/txvTime"
+                tools:src="@drawable/ic_edit_24dp" />
+
+            <Button
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="24sp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_shape"
+                android:drawableEnd="@drawable/ic_attach_money_black_24dp"
+                android:maxHeight="20dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="4dp"
+                android:text="@string/txt_invoice"
+                android:textColor="@color/white"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/btnEdit"
+                app:layout_constraintTop_toBottomOf="@+id/txvTime" />
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/panelBackground"
+                android:paddingBottom="12dp"
+                android:tint="@color/dark_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_cancel_black_24dp" />
 
             <ImageView
                 android:id="@+id/imvTable"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@mipmap/ic_launcher"
                 tools:srcCompat="@tools:sample/avatars[2]" />
 
             <TextView
@@ -33,18 +87,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:backgroundTint="@color/noColor"
-                android:text="Title"
-                android:textAlignment="center"
+                android:text="@string/client_hint"
+                android:textAlignment="viewStart"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnDelete"
                 app:layout_constraintStart_toEndOf="@+id/imvTable"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txvTotal"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/noColor"
                 android:textAlignment="center"
@@ -53,6 +107,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imvTable"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/txvPrice" />
 
             <TextView
@@ -62,50 +117,29 @@
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@color/noColor"
                 android:text=""
-                app:layout_constraintEnd_toStartOf="@+id/txvTotal"
-                app:layout_constraintStart_toStartOf="@+id/txvPrice"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toEndOf="@+id/timeIcon"
                 app:layout_constraintTop_toBottomOf="@+id/txvPrice" />
 
-            <ImageButton
-                android:id="@+id/btnEdit"
-                style="@style/Widget.AppCompat.ImageButton"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@android:color/transparent"
-                android:tint="@color/dark_gray"
-                app:layout_constraintStart_toStartOf="@+id/txvTime"
-                app:layout_constraintTop_toBottomOf="@+id/txvTime"
-                tools:src="@drawable/ic_edit_24dp" />
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.7" />
 
-            <ImageButton
-                android:id="@+id/btnClose"
-                style="@style/Widget.AppCompat.ImageButton"
+            <ImageView
+                android:id="@+id/timeIcon"
+                style="@android:style/Widget.Material.Light.ImageButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="?android:attr/panelBackground"
-                android:tint="@color/dark_gray"
-                app:layout_constraintStart_toEndOf="@+id/btnEdit"
-                app:layout_constraintTop_toBottomOf="@+id/txvTime"
-                app:srcCompat="@drawable/ic_done_24dp" />
-
-            <ImageButton
-                android:id="@+id/btnDelete"
-                style="@style/Widget.AppCompat.ImageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="?android:attr/panelBackground"
-                android:tint="@color/dark_gray"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/btnClose"
-                app:layout_constraintTop_toBottomOf="@+id/txvTime"
-                app:srcCompat="@drawable/ic_delete_forever_24dp" />
+                android:background="@color/noColor"
+                android:src="@drawable/ic_watch_later_black_24dp"
+                android:tint="@color/grey"
+                app:layout_constraintBottom_toBottomOf="@+id/txvTime"
+                app:layout_constraintStart_toEndOf="@+id/imvTable"
+                app:layout_constraintTop_toTopOf="@+id/txvTime" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

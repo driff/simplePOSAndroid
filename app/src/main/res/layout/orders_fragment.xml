@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.viewpager.widget.ViewPager
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/pager"
+<com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.viewpager.widget.PagerTitleStrip
-        android:id="@+id/pager_title_strip"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@color/primaryDarkColor"
-        android:textColor="@color/primaryTextColor"
-        android:paddingTop="4dp"
-        android:paddingBottom="0dp" />
+        android:layout_height="match_parent">
 
-</androidx.viewpager.widget.ViewPager>
+        <androidx.viewpager.widget.PagerTitleStrip
+            android:id="@+id/pager_title_strip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@color/primaryDarkColor"
+            android:textColor="@color/primaryTextColor"
+            android:paddingTop="4dp"
+            android:paddingBottom="0dp" />
+
+    </androidx.viewpager.widget.ViewPager>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        app:layout_anchor="@id/pager"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_plus_one_black_24dp"
+        app:borderWidth="@dimen/card_corner_radius"
+        app:fabSize="auto" />
+</com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>

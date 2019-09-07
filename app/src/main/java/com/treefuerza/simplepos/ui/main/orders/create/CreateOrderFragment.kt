@@ -24,7 +24,7 @@ class CreateOrderFragment : BaseMvRxFragment() {
 
     @Inject
     lateinit var adapter: OrderDetailsAdapter
-    val viewModel: CreateOrderViewModel by fragmentViewModel()
+    private val viewModel: CreateOrderViewModel by fragmentViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (context != null) {

@@ -6,8 +6,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="order_title">Client: %s - %2d seats</string>
-    <string name="order_start_date">At: %s</string>
+    <string name="order_title">Client: %s</string>
+    <string name="order_start_date">%s</string>
     <string name="client_hint">Client</string>
     <string name="search_action">Search</string>
     <string name="item_name">Item Name</string>
@@ -17,4 +17,5 @@
     <string name="item_price">Item Price</string>
     <string name="item_tax">Item Tax %</string>
     <string name="add_product_error_msg">Check the info supplied, something seems to be missing or out of bounds</string>
+    <string name="txt_invoice">Invoice</string>
 </resources>

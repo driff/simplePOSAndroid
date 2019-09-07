@@ -5,7 +5,10 @@ import com.treefuerza.simplepos.TreeApplication
 import com.treefuerza.simplepos.data.DataRepository
 import com.treefuerza.simplepos.models.Orders
 import com.treefuerza.simplepos.ui.base.MvRxViewModel
+import com.treefuerza.simplepos.utils.toTimeString
 import io.reactivex.Observable
+import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 
 data class OpenOrdersState(val orders: Async<List<Orders>> = Uninitialized, @PersistState val total: Double = 0.0,
@@ -35,7 +38,9 @@ class OpenOrdersViewModel(initialState: OpenOrdersState, private val repo: DataR
 //        this.repo.getOpenOrders()
 //            .toObservable()
 //            .execute { copy(orders = it) }
-        Observable.just(listOf(Orders(UUID.randomUUID().toString(), "TEST", total = 37.50), Orders(UUID.randomUUID().toString(), "TEST2", total = 20.12)))
+        Observable.just(listOf(Orders(UUID.randomUUID().toString(), "TEST", total = 37.50,
+            createdAt = ZonedDateTime.now().toTimeString()), Orders(UUID.randomUUID().toString(),
+            "TEST2", total = 20.12, createdAt = ZonedDateTime.now().toTimeString())))
             .execute { copy(orders = it) }
     }
 }
