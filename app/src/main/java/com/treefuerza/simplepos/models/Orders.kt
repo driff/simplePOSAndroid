@@ -37,8 +37,17 @@ interface OrderDao {
     @Query("SELECT * FROM orders WHERE id = :id LIMIT 1")
     fun findById(id: String): Single<Orders>
 
+    @Transaction
+    fun insertOrderTransaction(orders: Orders, details: List<OrderDetail>) {
+        insert(orders)
+        insertDetails(details)
+    }
+
     @Insert
-    fun insertAll(vararg orders: Orders)
+    fun insert(orders: Orders)
+
+    @Insert
+    fun insertDetails(orderDetails: List<OrderDetail>)
 
     @Delete
     fun delete(order: Orders)

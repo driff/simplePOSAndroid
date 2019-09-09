@@ -2,80 +2,214 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/container"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.orders.create.CreateOrderFragment">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_person_black_24dp"
+        android:tint="@color/dark_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/tilClient"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tilClient" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_local_mall_black_24dp"
+        android:tint="@color/dark_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/tilQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/tilQuantity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tilQuantity" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_attach_money_black_24dp"
+        android:tint="@color/dark_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/tilTotal"
+        app:layout_constraintEnd_toStartOf="@+id/tilTotal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tilQuantity"
+        app:layout_constraintTop_toTopOf="@+id/tilTotal" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerOrderDetails"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:elevation="0dp"
+        android:translationY="-14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddProduct" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="5"
+        android:hint="Quantity"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/tilProduct">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilClient"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
-        android:weightSum="6"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_weight="5"
+        android:hint="@string/client_hint"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_person_black_24dp"
-            android:tint="@color/dark_gray" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilClient"
-            android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtClient"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:counterOverflowTextAppearance="@color/primaryColor"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="5"
-            app:boxCollapsedPaddingTop="2dp"
-            android:hint="@string/client_hint"
-            app:boxBackgroundColor="@color/shadowColor"
-            android:textColorHint="@color/dark_gray"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:boxStrokeColor="@color/primaryColor">
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtClient"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/client_hint" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="5"
+        android:hint="Total"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/tilProduct">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="5"
+        android:hint="@string/product"
+        android:theme="@style/TextInputLayoutAppearance"
+        app:boxBackgroundColor="@color/gray"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/tilClient"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/tilClient">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_search_24dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/btnAddProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_vector_color"
+        android:elevation="4dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_plus_one_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilTotal" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_local_mall_black_24dp"
+        android:tint="@color/dark_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/tilProduct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tilProduct" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSaveOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:src="@drawable/ic_add_circle_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,4 +18,5 @@
     <string name="item_tax">Item Tax %</string>
     <string name="add_product_error_msg">Check the info supplied, something seems to be missing or out of bounds</string>
     <string name="txt_invoice">Invoice</string>
+    <string name="product">Product</string>
 </resources>

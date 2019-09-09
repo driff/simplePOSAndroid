@@ -1,8 +1,6 @@
 package com.treefuerza.simplepos.data
 
-import com.treefuerza.simplepos.models.Item
-import com.treefuerza.simplepos.models.User
-import com.treefuerza.simplepos.models.UserDao
+import com.treefuerza.simplepos.models.*
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 
@@ -16,4 +14,7 @@ class DataRepository (val db: AppDatabase) {
     fun getClientByName(name: String) = db.clientDao().findByName(name)
     fun addItem(item:Item) = db.itemDao().insert(item)
     fun getAllItems() = db.itemDao().getAll()
+    fun addOrder(order: Orders) = db.orderDao().insert(order)
+    fun addOrderDetails(orderDetails: OrderDetail) = db.orderDetailDao().insertAll(orderDetails)
+    fun addOrderTransaction(orders: Orders, details: List<OrderDetail>) = db.orderDao().insertOrderTransaction(orders, details)
 }

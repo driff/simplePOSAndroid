@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.models.Item
+import com.treefuerza.simplepos.utils.OnItemClickListener
 import kotlinx.android.synthetic.main.items_recycler.view.*
 import javax.inject.Inject
 
-class ProductsAdapter @Inject constructor(private var list: MutableList<Item>) : RecyclerView.Adapter<ProductsAdapter.ItemViewHolder>() {
+class ProductsAdapter @Inject constructor(private var list: MutableList<Item>, private val listener: OnItemClickListener<Item>) : RecyclerView.Adapter<ProductsAdapter.ItemViewHolder>() {
 
     fun add(item: Item) {
         list.add(item)
@@ -34,7 +35,7 @@ class ProductsAdapter @Inject constructor(private var list: MutableList<Item>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.items_recycler, parent, false)
-        return ItemViewHolder(view)
+        return ItemViewHolder(view, listener)
     }
 
     override fun getItemCount(): Int = list.size
@@ -45,7 +46,7 @@ class ProductsAdapter @Inject constructor(private var list: MutableList<Item>) :
     }
 
 
-    inner class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ItemViewHolder(val view: View, listener: OnItemClickListener<Item>) : RecyclerView.ViewHolder(view) {
 
         fun bind(items: Item) {
             view.apply {
@@ -53,6 +54,9 @@ class ProductsAdapter @Inject constructor(private var list: MutableList<Item>) :
                 txvName.text = items.name
                 txvItemCode.text = "Code: ${items.code}"
             }
+
+            view.setOnClickListener{listener.onClick(items)}
+            view.setOnLongClickListener { listener.onLongClick(items) }
         }
 
     }
