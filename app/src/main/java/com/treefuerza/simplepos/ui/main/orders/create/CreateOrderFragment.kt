@@ -33,10 +33,10 @@ class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<Item> {
         when(it.item) {
             is Success -> {
                 val item = it.item.invoke()
-                tilProduct.helperText = String.format("Name: %s", item.name)
+                tilProduct.helperText = String.format("Product: %s", item.name)
                 edtProduct.setText(item.code)
                 edtQuantity.setText("1")
-                edtTotal.setText(String.format("$ %9.2f", (item.price * (item.taxValue/100))))
+                edtTotal.setText(String.format("$ %9.2f", item.price + (item.price * (item.taxValue/100))))
             }
         }
         when(it.details) {
@@ -72,7 +72,6 @@ class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<Item> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadOrder()
         recyclerOrderDetails.layoutManager = GridLayoutManager(requireContext(), 3)
         recyclerOrderDetails.adapter = adapter
         edtProduct.setOnTouchListener { _, motionEvent -> handleItemSearch(motionEvent, this::onItemSearch) }

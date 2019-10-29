@@ -11,8 +11,8 @@
     <string name="client_hint">Client</string>
     <string name="search_action">Search</string>
     <string name="item_name">Item Name</string>
-    <string name="total_format">$%.2f</string>
-    <string name="quantity_format">%f</string>
+    <string name="total_format">Total:$%.2f</string>
+    <string name="quantity_format">Quantiy:%f</string>
     <string name="item_code">Item Code</string>
     <string name="item_price">Item Price</string>
     <string name="item_tax">Item Tax %</string>

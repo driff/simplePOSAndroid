@@ -35,12 +35,12 @@ class OpenOrdersViewModel(initialState: OpenOrdersState, private val repo: DataR
 
     private fun calculate(count: totals, order:Orders): totals = totals(count.total + order.total, count.size + 1)
     fun fetchOpenOrders() {
-//        this.repo.getOpenOrders()
-//            .toObservable()
-//            .execute { copy(orders = it) }
-        Observable.just(listOf(Orders(UUID.randomUUID().toString(), "TEST", total = 37.50,
-            createdAt = ZonedDateTime.now().toTimeString()), Orders(UUID.randomUUID().toString(),
-            "TEST2", total = 20.12, createdAt = ZonedDateTime.now().toTimeString())))
+        this.repo.getOpenOrders()
+            .toObservable()
             .execute { copy(orders = it) }
+//        Observable.just(listOf(Orders(UUID.randomUUID().toString(), "TEST", total = 37.50,
+//            createdAt = ZonedDateTime.now().toTimeString()), Orders(UUID.randomUUID().toString(),
+//            "TEST2", total = 20.12, createdAt = ZonedDateTime.now().toTimeString())))
+//            .execute { copy(orders = it) }
     }
 }

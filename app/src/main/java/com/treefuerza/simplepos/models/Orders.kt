@@ -8,7 +8,8 @@ import io.reactivex.Single
 import java.util.*
 @Entity
 data class Orders(
-    @PrimaryKey var id: String = UUID.randomUUID().toString(),
+    @PrimaryKey var id: String,
+    @ColumnInfo var sequence: Long,
     @ColumnInfo var creator: String,
     @ColumnInfo var client: String = "Client",
     @ColumnInfo var total: Double = 0.0,
@@ -28,7 +29,7 @@ interface OrderDao {
     @Query("SELECT * FROM orders ORDER BY created_at ASC")
     fun getAllFromOrder(): Single<List<Orders>>
 
-    @Query("SELECT * FROM orders WHERE status = $STATUS_CREATED ORDER BY created_at ASC")
+    @Query("SELECT * FROM orders ORDER BY created_at ASC")
     fun getAllOpenOrders(): Flowable<List<Orders>>
 
     @Query("SELECT * FROM orders WHERE status <> $STATUS_DELETED")

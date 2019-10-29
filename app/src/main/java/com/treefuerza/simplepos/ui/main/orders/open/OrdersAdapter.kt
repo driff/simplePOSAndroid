@@ -41,14 +41,15 @@ class OrdersAdapter @Inject constructor(private var list: MutableList<Orders>) :
 
 
     override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(list[position], position)
     }
 
 
     inner class OrdersViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(orders: Orders) {
+        fun bind(orders: Orders, pos: Int) {
             view.apply {
+                imvTable.text = String.format("%3d", pos+1)
                 txvPrice.text = String.format(context.getString(R.string.order_title), orders.client)
                 txvTime.text = String.format(context.getString(R.string.order_start_date), orders.createdAt)
                 txvTotal.text = String.format("$%4.2f", orders.total)

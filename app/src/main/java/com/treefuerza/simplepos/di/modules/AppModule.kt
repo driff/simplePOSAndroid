@@ -18,7 +18,9 @@ class AppModule(private val application: Application) {
     fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
             context,
             AppDatabase::class.java, "treefuerza-pos"
-        ).build()
+        ).apply {
+        addMigrations(AppDatabase.MIGRATION_1_2)
+    }.build()
     
     @Singleton
     @Provides

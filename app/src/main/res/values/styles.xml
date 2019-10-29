@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="android:navigationBarColor">@color/colorBottomNav</item>
     </style>
 
     <style name="ErrorText" parent="TextAppearance.AppCompat">

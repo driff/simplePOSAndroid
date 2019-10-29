@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#AB47BC</color>
-    <color name="primaryDarkColor">#7B1FA2</color>
+    <color name="primaryColor">#1976D2</color>
+    <color name="primaryDarkColor">#0D47A1</color>
     <color name="primaryTextColor">#FFFFFF</color>
     <color name="secondaryTextColor">#FFFFFF</color>
     <color name="light_purple">#B39DDB</color>
@@ -11,13 +11,14 @@
     <color name="blue">#03A9F4</color>
     <color name="green">#4CAF50</color>
     <color name="grey">#C4C4C4</color>
-    <color name="colorBottomNav">#4A148C</color>
+    <color name="colorBottomNav">#1A237E</color>
     <color name="dark_gray">#4E4E4E</color>
     <color name="gray">#9E9E9E</color>
     <color name="noColor">#00FFFFFF</color>
-    <color name="colorAccentDark">#E91E63</color>
+    <color name="colorAccentDark">#03A9F4</color>
     <color name="colorError">#CA0606</color>
     <color name="shadowColor">#99212121</color>
     <color name="whiteTranslucid">#8CFFFFFF</color>
     <color name="darkGreen">#3A9219</color>
+    <color name="transparent">#FFFFFFFF</color>
 </resources>
