@@ -1,14 +1,14 @@
 package com.treefuerza.simplepos.ui.main
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.airbnb.mvrx.BaseMvRxActivity
 import com.treefuerza.simplepos.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseMvRxActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

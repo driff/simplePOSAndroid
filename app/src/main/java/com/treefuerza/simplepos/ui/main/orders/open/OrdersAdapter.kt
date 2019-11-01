@@ -6,10 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.models.Orders
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.orders_recycler.view.*
 import javax.inject.Inject
 
 class OrdersAdapter @Inject constructor(private var list: MutableList<Orders>) : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
+
+    private val clickSubject = PublishSubject.create<Orders>()
+    val clickEvent: Observable<Orders> = clickSubject
 
     fun add(order: Orders) {
         list.add(order)
@@ -46,7 +51,6 @@ class OrdersAdapter @Inject constructor(private var list: MutableList<Orders>) :
 
 
     inner class OrdersViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-
         fun bind(orders: Orders, pos: Int) {
             view.apply {
                 imvTable.text = String.format("%3d", pos+1)
@@ -54,6 +58,7 @@ class OrdersAdapter @Inject constructor(private var list: MutableList<Orders>) :
                 txvTime.text = String.format(context.getString(R.string.order_start_date), orders.createdAt)
                 txvTotal.text = String.format("$%4.2f", orders.total)
             }
+            view.setOnClickListener { clickSubject.onNext(orders) }
         }
 
     }

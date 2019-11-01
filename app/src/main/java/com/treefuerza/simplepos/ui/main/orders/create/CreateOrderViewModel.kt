@@ -9,7 +9,8 @@ import com.treefuerza.simplepos.models.OrderDetail
 import com.treefuerza.simplepos.models.Orders
 import com.treefuerza.simplepos.ui.base.MvRxViewModel
 import io.reactivex.Observable
-import org.threeten.bp.ZonedDateTime
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.util.*
 
 data class CreateOrderState(
@@ -22,12 +23,17 @@ data class CreateOrderState(
     val order: Async<Orders> = Uninitialized,
     val item: Async<Item> = Uninitialized,
     val orderSaved: Async<Boolean> = Uninitialized,
-    val details: Async<List<OrderDetail>> = Uninitialized): MvRxState
+    val details: Async<List<OrderDetail>> = Uninitialized
+) : MvRxState
 
-class CreateOrderViewModel(initialState: CreateOrderState, private val repo: DataRepository): MvRxViewModel<CreateOrderState>(initialState){
+class CreateOrderViewModel(initialState: CreateOrderState, private val repo: DataRepository) :
+    MvRxViewModel<CreateOrderState>(initialState) {
 
-    companion object: MvRxViewModelFactory<CreateOrderViewModel, CreateOrderState>{
-        override fun create(viewModelContext: ViewModelContext, state: CreateOrderState): CreateOrderViewModel? {
+    companion object : MvRxViewModelFactory<CreateOrderViewModel, CreateOrderState> {
+        override fun create(
+            viewModelContext: ViewModelContext,
+            state: CreateOrderState
+        ): CreateOrderViewModel? {
             val repo = viewModelContext.app<TreeApplication>().component.dataRepository()
             return CreateOrderViewModel(state, repo)
         }
@@ -42,6 +48,26 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
 //        }
     }
 
+    fun loadOrder(id: String?) {
+        if (id != null)
+            this.repo.db.orderDao().findById(id)
+                .subscribeOn(Schedulers.io())
+                .toObservable()
+//                .execute {
+//                    copy(order = it)
+//                }
+                .map {
+                    setState { copy(order = Success(it)) }
+                    it
+                }.concatMap {
+                    this.repo.db.orderDetailDao().getAllFromOrder(it.id)
+                        .toObservable().observeOn(Schedulers.io())
+                }
+                .execute {
+                    copy(details = it)
+                }
+    }
+
     fun setProduct(item: Item) {
         Observable.just(item).execute {
             copy(item = it)
@@ -50,8 +76,12 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
 
     fun addDetail(quantity: Double) {
         withState {
-            val order = it.order.invoke()?.copy()?: Orders(id = UUID.randomUUID().toString(), creator = "", sequence = 0)
-            val item = it.item.invoke()?: return@withState
+            val order = it.order.invoke()?.copy() ?: Orders(
+                id = UUID.randomUUID().toString(),
+                creator = "",
+                sequence = 0
+            )
+            val item = it.item.invoke() ?: return@withState
             val subtotal = item.price * quantity
             val tax = subtotal * (item.taxValue / 100)
             val total = subtotal + tax
@@ -59,20 +89,30 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
             order.total += total
             order.tax += tax
             order.subtotal += subtotal
-            val det = OrderDetail(id = UUID.randomUUID().toString(), orderId = order.id,
-                total = total, description = item.name, quantity = quantity, itemId = item.id, tax = tax, itemPrice = item.price)
-            val dets = it.details.invoke()?.toMutableList()?: mutableListOf()
+            val det = OrderDetail(
+                id = UUID.randomUUID().toString(),
+                orderId = order.id,
+                total = total,
+                description = item.name,
+                quantity = quantity,
+                itemId = item.id,
+                tax = tax,
+                itemPrice = item.price
+            )
+            val dets = it.details.invoke()?.toMutableList() ?: mutableListOf()
             dets.add(det)
-            Observable.just(dets).execute { details -> copy(details = details)}
+            Observable.just(dets).execute { details -> copy(details = details) }
             Observable.just(order).execute { o -> copy(order = o) }
         }
     }
 
-    fun saveOrder(client: String){
+    fun saveOrder(client: String) {
         withState {
-            val orderDetails = it.details.invoke()?: return@withState
-            val order = it.order.invoke()?.copy(client= client, itemsQuantity = orderDetails.size,
-                status = 1)?: return@withState
+            val orderDetails = it.details.invoke() ?: return@withState
+            val order = it.order.invoke()?.copy(
+                client = client, itemsQuantity = orderDetails.size,
+                status = 1
+            ) ?: return@withState
             this.repo.addOrderTransaction(order, orderDetails)
         }
     }

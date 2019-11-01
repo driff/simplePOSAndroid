@@ -46,5 +46,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/ordersFragment" />
+        <argument
+            android:name="ORDER_ID"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

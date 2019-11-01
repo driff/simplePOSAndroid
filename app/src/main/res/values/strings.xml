@@ -19,4 +19,5 @@
     <string name="add_product_error_msg">Check the info supplied, something seems to be missing or out of bounds</string>
     <string name="txt_invoice">Invoice</string>
     <string name="product">Product</string>
+    <string name="order_id">ORDER_ID</string>
 </resources>

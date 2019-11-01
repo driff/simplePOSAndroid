@@ -22,7 +22,7 @@ class OrdersFragment : BaseMvRxFragment() {
 
     val fragments: List<Fragment> by lazy { initFragments() }
 
-    private fun initFragments(): List<Fragment> = listOf(OpenOrdersFragment(), DemoObjectFragment())
+    private fun initFragments() = listOf(OpenOrdersFragment(), DemoObjectFragment())
 
     override fun invalidate() {
 

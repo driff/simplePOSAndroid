@@ -2,10 +2,9 @@ package com.treefuerza.simplepos.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.airbnb.mvrx.BaseMvRxActivity
 import com.treefuerza.simplepos.R
 
-class LoginActivity : BaseMvRxActivity() {
+class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

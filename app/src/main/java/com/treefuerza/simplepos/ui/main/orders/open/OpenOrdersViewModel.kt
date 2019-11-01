@@ -5,18 +5,15 @@ import com.treefuerza.simplepos.TreeApplication
 import com.treefuerza.simplepos.data.DataRepository
 import com.treefuerza.simplepos.models.Orders
 import com.treefuerza.simplepos.ui.base.MvRxViewModel
-import com.treefuerza.simplepos.utils.toTimeString
 import io.reactivex.Observable
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
-import java.util.*
 
 data class OpenOrdersState(val orders: Async<List<Orders>> = Uninitialized, @PersistState val total: Double = 0.0,
                            @PersistState val size: Int = 0): MvRxState
-data class totals(val total: Double = 0.0, val size: Int = 0)
+data class Totals(val total: Double = 0.0, val size: Int = 0)
 class OpenOrdersViewModel(initialState: OpenOrdersState, private val repo: DataRepository): MvRxViewModel<OpenOrdersState>(initialState) {
 
     companion object: MvRxViewModelFactory<OpenOrdersViewModel, OpenOrdersState> {
+        @JvmStatic
         override fun create(viewModelContext: ViewModelContext, state: OpenOrdersState): OpenOrdersViewModel? {
             val repo = viewModelContext.app<TreeApplication>().component.dataRepository()
             return OpenOrdersViewModel(state, repo)
@@ -26,21 +23,17 @@ class OpenOrdersViewModel(initialState: OpenOrdersState, private val repo: DataR
     init {
         asyncSubscribe(OpenOrdersState::orders, onSuccess = {
             if(!it.isNullOrEmpty()) {
-                Observable.fromIterable(it).reduce(totals(), this::calculate)
+                Observable.fromIterable(it).reduce(Totals(), this::calculate)
                     .execute { total -> copy(total = total.invoke()?.total?:0.0, size = total.invoke()?.size?: 0) }
             }
         })
         fetchOpenOrders()
     }
 
-    private fun calculate(count: totals, order:Orders): totals = totals(count.total + order.total, count.size + 1)
-    fun fetchOpenOrders() {
+    private fun calculate(count: Totals, order:Orders): Totals = Totals(count.total + order.total, count.size + 1)
+    private fun fetchOpenOrders() {
         this.repo.getOpenOrders()
             .toObservable()
             .execute { copy(orders = it) }
-//        Observable.just(listOf(Orders(UUID.randomUUID().toString(), "TEST", total = 37.50,
-//            createdAt = ZonedDateTime.now().toTimeString()), Orders(UUID.randomUUID().toString(),
-//            "TEST2", total = 20.12, createdAt = ZonedDateTime.now().toTimeString())))
-//            .execute { copy(orders = it) }
     }
 }

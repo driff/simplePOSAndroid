@@ -72,6 +72,11 @@ class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<Item> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let{
+
+            //Using SafeArgs
+            viewModel.loadOrder(CreateOrderFragmentArgs.fromBundle(it).ORDERID)
+        }
         recyclerOrderDetails.layoutManager = GridLayoutManager(requireContext(), 3)
         recyclerOrderDetails.adapter = adapter
         edtProduct.setOnTouchListener { _, motionEvent -> handleItemSearch(motionEvent, this::onItemSearch) }
