@@ -55,6 +55,9 @@ class OrdersFragment : BaseMvRxFragment() {
 
 
     private fun createNewOrder(view: View) {
+        val bundle = Bundle().apply {
+            putString(getString(R.string.order_id), "")
+        }
         view.findNavController().navigate(R.id.action_ordersFragment_to_createOrderFragment)
     }
 

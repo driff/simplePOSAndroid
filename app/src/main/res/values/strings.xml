@@ -20,4 +20,7 @@
     <string name="txt_invoice">Invoice</string>
     <string name="product">Product</string>
     <string name="order_id">ORDER_ID</string>
+    <string name="txv_subtotal">Subtotal: $%6.2f</string>
+    <string name="txv_total">Total: $%6.2f</string>
+    <string name="save">Save</string>
 </resources>

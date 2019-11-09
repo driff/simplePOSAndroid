@@ -49,13 +49,10 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
     }
 
     fun loadOrder(id: String?) {
-        if (id != null)
+        if (id != null && id.trim() != "")
             this.repo.db.orderDao().findById(id)
                 .subscribeOn(Schedulers.io())
                 .toObservable()
-//                .execute {
-//                    copy(order = it)
-//                }
                 .map {
                     setState { copy(order = Success(it)) }
                     it
