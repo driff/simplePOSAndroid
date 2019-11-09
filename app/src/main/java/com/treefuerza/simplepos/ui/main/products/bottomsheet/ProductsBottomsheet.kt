@@ -21,7 +21,10 @@ import com.treefuerza.simplepos.utils.DRAWABLE_RIGHT
 import com.treefuerza.simplepos.utils.OnItemClickListener
 import com.treefuerza.simplepos.utils.RoundedBottomSheetDialogFragment
 import com.treefuerza.simplepos.utils.handleItemSearch
+import kotlinx.android.synthetic.main.order_item_bottomsheet.*
 import kotlinx.android.synthetic.main.products_fragment.*
+import kotlinx.android.synthetic.main.products_fragment.edtItemCode
+import kotlinx.android.synthetic.main.products_fragment.list
 import javax.inject.Inject
 
 class ProductsBottomsheet(private val listener: OnItemClickListener<Item>) : RoundedBottomSheetDialogFragment(){
@@ -47,7 +50,7 @@ class ProductsBottomsheet(private val listener: OnItemClickListener<Item>) : Rou
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?  = inflater.inflate(R.layout.products_fragment, container, false)
+    ): View?  = inflater.inflate(R.layout.order_item_bottomsheet, container, false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if(context!=null){
@@ -63,7 +66,15 @@ class ProductsBottomsheet(private val listener: OnItemClickListener<Item>) : Rou
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         list.layoutManager = GridLayoutManager(requireContext(), 3)
         list.adapter = adapter
+        resetValues()
         edtItemCode.setOnTouchListener { _, motionEvent -> handleItemSearch(motionEvent, this::onItemSearch) }
+    }
+
+    fun resetValues() {
+        txvTotal.text = String.format(getString(R.string.money_format), 0.0)
+        txvUnitPrice.text = String.format(getString(R.string.money_format), 0.0)
+        edtQuantity.setText("0")
+        txvProductName.text = String.format(getString(R.string.product_name), "")
     }
 
     private fun onItemSearch(event: MotionEvent): Boolean {

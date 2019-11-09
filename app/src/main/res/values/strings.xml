@@ -23,4 +23,9 @@
     <string name="txv_subtotal">Subtotal: $%6.2f</string>
     <string name="txv_total">Total: $%6.2f</string>
     <string name="save">Save</string>
+    <string name="unit_p">Unit. P.</string>
+    <string name="total">Total</string>
+    <string name="money_format">$%6.2f</string>
+    <string name="product_name">Product:%s</string>
+    <string name="quantity_hint">Quantity</string>
 </resources>

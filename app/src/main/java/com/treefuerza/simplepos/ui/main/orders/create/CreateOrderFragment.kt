@@ -15,14 +15,13 @@ import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.TreeApplication
 import com.treefuerza.simplepos.di.components.DaggerCreateOrdersComponent
 import com.treefuerza.simplepos.models.Item
+import com.treefuerza.simplepos.ui.main.products.bottomsheet.ProductsBottomsheet
 import com.treefuerza.simplepos.utils.OnItemClickListener
 import kotlinx.android.synthetic.main.fragment_edit_order.*
 import javax.inject.Inject
 
 
 class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<Item> {
-
-    //TODO: SET This as EditOrder
 
     var bottomSheetFragment: BottomSheetDialogFragment? = null
 
@@ -95,6 +94,8 @@ class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<Item> {
 //        edtProduct.setOnTouchListener { _, motionEvent -> handleItemSearch(motionEvent, this::onItemSearch) }
         btnAddProduct.setOnClickListener(this::addDetailAction)
 //        fabSaveOrder.setOnClickListener(this::saveOrder)
+        txvTotal.text = String.format(getString(R.string.txv_total), 0.0)
+        txvSubtotal.text = String.format(getString(R.string.txv_subtotal), 0.0)
     }
 
     private fun saveOrder(view: View) {
@@ -104,16 +105,12 @@ class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<Item> {
 
     private fun addDetailAction(view: View) {
         Log.d(TAG, "adding product")
-//        val quantity = edtQuantity.text.toString().toDoubleOrNull()?: 1.0
-//        viewModel.addDetail(quantity)
+        showItemsBottomSheet()
     }
 
-    private fun onItemSearch(event: MotionEvent): Boolean {
-//        if(event.rawX >= (edtProduct.right - edtProduct.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
-//            bottomSheetFragment = ProductsBottomsheet(this)
-//            bottomSheetFragment?.show(childFragmentManager, bottomSheetFragment?.tag)
-//        }
-        return false
+    private fun showItemsBottomSheet() {
+        bottomSheetFragment = ProductsBottomsheet(this)
+        bottomSheetFragment?.show(childFragmentManager, bottomSheetFragment?.tag)
     }
 
     private fun initView(view: View) {
