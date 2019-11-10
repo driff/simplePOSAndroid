@@ -71,33 +71,21 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
         }
     }
 
-    fun addDetail(quantity: Double) {
+    fun addDetail(detail: OrderDetail) {
         withState {
             val order = it.order.invoke()?.copy() ?: Orders(
                 id = UUID.randomUUID().toString(),
                 creator = "",
                 sequence = 0
             )
-            val item = it.item.invoke() ?: return@withState
-            val subtotal = item.price * quantity
-            val tax = subtotal * (item.taxValue / 100)
-            val total = subtotal + tax
-            Log.i("detvm", "total: $total")
-            order.total += total
-            order.tax += tax
-            order.subtotal += subtotal
-            val det = OrderDetail(
-                id = UUID.randomUUID().toString(),
-                orderId = order.id,
-                total = total,
-                description = item.name,
-                quantity = quantity,
-                itemId = item.id,
-                tax = tax,
-                itemPrice = item.price
-            )
+            detail.apply {
+                order.total += total
+                order.tax += tax
+                order.subtotal += subtotal
+
+            }
             val dets = it.details.invoke()?.toMutableList() ?: mutableListOf()
-            dets.add(det)
+            dets.add(detail)
             Observable.just(dets).execute { details -> copy(details = details) }
             Observable.just(order).execute { o -> copy(order = o) }
         }

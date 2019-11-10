@@ -26,6 +26,6 @@
     <string name="unit_p">Unit. P.</string>
     <string name="total">Total</string>
     <string name="money_format">$%6.2f</string>
-    <string name="product_name">Product:%s</string>
+    <string name="product_name">Product: %s</string>
     <string name="quantity_hint">Quantity</string>
 </resources>

@@ -15,13 +15,14 @@ import com.treefuerza.simplepos.R
 import com.treefuerza.simplepos.TreeApplication
 import com.treefuerza.simplepos.di.components.DaggerCreateOrdersComponent
 import com.treefuerza.simplepos.models.Item
+import com.treefuerza.simplepos.models.OrderDetail
 import com.treefuerza.simplepos.ui.main.products.bottomsheet.ProductsBottomsheet
 import com.treefuerza.simplepos.utils.OnItemClickListener
 import kotlinx.android.synthetic.main.fragment_edit_order.*
 import javax.inject.Inject
 
 
-class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<Item> {
+class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<OrderDetail> {
 
     var bottomSheetFragment: BottomSheetDialogFragment? = null
 
@@ -119,13 +120,13 @@ class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<Item> {
         }
     }
 
-    override fun onClick(t: Item) {
-        viewModel.setProduct(t)
+    override fun onClick(t: OrderDetail) {
         bottomSheetFragment?.dismiss()
         bottomSheetFragment = null
+        viewModel.addDetail(t)
     }
 
-    override fun onLongClick(t: Item): Boolean {
+    override fun onLongClick(t: OrderDetail): Boolean {
         return false
     }
 
