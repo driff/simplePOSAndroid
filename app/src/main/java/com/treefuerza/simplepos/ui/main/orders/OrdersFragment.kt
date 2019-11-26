@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.PersistState
@@ -34,12 +35,11 @@ class OrdersFragment : BaseMvRxFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.orders_fragment, container, false)
-        return view
+        return inflater.inflate(R.layout.orders_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        ordersPageAdapter = object : FragmentPagerAdapter(childFragmentManager) {
+        ordersPageAdapter = object : FragmentPagerAdapter(childFragmentManager, 1) {
             override fun getPageTitle(position: Int): CharSequence? {
                 return "TAB ${position+1}"
             }
@@ -58,7 +58,7 @@ class OrdersFragment : BaseMvRxFragment() {
         val bundle = Bundle().apply {
             putString(getString(R.string.order_id), "")
         }
-        view.findNavController().navigate(R.id.action_ordersFragment_to_createOrderFragment)
+        findNavController().navigate(R.id.action_ordersFragment_to_createOrderFragment, bundle)
     }
 
     class DemoObjectFragment : Fragment() {

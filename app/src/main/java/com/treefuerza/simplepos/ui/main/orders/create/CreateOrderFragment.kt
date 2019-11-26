@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.*
 import androidx.appcompat.view.SupportMenuInflater
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.Success
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_edit_order.*
 import javax.inject.Inject
 
 
+@Suppress("UNUSED_PARAMETER")
 class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<OrderDetail> {
 
     var bottomSheetFragment: BottomSheetDialogFragment? = null
@@ -38,13 +40,17 @@ class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<OrderDetail>
 //        }
         when(it.order) {
             is Success -> {
+                Log.d(TAG,"order")
                 edtClient.setText(it.client)
                 txvSubtotal.text = String.format(getString(R.string.txv_subtotal), it.order.invoke().subtotal)
                 txvTotal.text = String.format(getString(R.string.txv_total), it.order.invoke().total)
             }
         }
         when(it.details) {
-            is Success -> adapter.replaceAll(it.details.invoke())
+            is Success -> {
+                Log.d(TAG,"detail")
+                adapter.replaceAll(it.details.invoke())
+            }
         }
     }
 
@@ -105,7 +111,6 @@ class CreateOrderFragment : BaseMvRxFragment(), OnItemClickListener<OrderDetail>
     }
 
     private fun addDetailAction(view: View) {
-        Log.d(TAG, "adding product")
         showItemsBottomSheet()
     }
 

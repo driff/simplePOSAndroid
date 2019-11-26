@@ -9,7 +9,6 @@ import com.treefuerza.simplepos.models.OrderDetail
 import com.treefuerza.simplepos.models.Orders
 import com.treefuerza.simplepos.ui.base.MvRxViewModel
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
@@ -28,6 +27,8 @@ data class CreateOrderState(
 
 class CreateOrderViewModel(initialState: CreateOrderState, private val repo: DataRepository) :
     MvRxViewModel<CreateOrderState>(initialState) {
+
+    val TAG = this.javaClass.canonicalName
 
     companion object : MvRxViewModelFactory<CreateOrderViewModel, CreateOrderState> {
         override fun create(
@@ -49,20 +50,19 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
     }
 
     fun loadOrder(id: String?) {
-        if (id != null && id.trim() != "")
+        if (id != null && id.trim() != "") {
             this.repo.db.orderDao().findById(id)
                 .subscribeOn(Schedulers.io())
-                .toObservable()
-                .map {
-                    setState { copy(order = Success(it)) }
-                    it
-                }.concatMap {
-                    this.repo.db.orderDetailDao().getAllFromOrder(it.id)
-                        .toObservable().observeOn(Schedulers.io())
-                }
+                .observeOn(Schedulers.io())
+                .execute { copy(order = it) }
+            this.repo.db.orderDetailDao().getAllFromOrder(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
                 .execute {
-                    copy(details = it)
-                }
+                Log.d(TAG, this.toString())
+                copy(details = it)
+            }
+        }
     }
 
     fun setProduct(item: Item) {
@@ -82,10 +82,12 @@ class CreateOrderViewModel(initialState: CreateOrderState, private val repo: Dat
                 order.total += total
                 order.tax += tax
                 order.subtotal += subtotal
-
+                orderId = order.id
             }
+            Log.i(TAG, detail.orderId)
             val dets = it.details.invoke()?.toMutableList() ?: mutableListOf()
             dets.add(detail)
+            repo.addOrderTransaction(order, dets)
             Observable.just(dets).execute { details -> copy(details = details) }
             Observable.just(order).execute { o -> copy(order = o) }
         }

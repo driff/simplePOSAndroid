@@ -19,9 +19,23 @@ data class Orders(
     @ColumnInfo var itemsQuantity: Int = 0,
     @ColumnInfo(name = "created_at") var createdAt: String = "",
     @ColumnInfo val size: Int = 0, //People on table
-    @ColumnInfo var status: Int = 0
+    @ColumnInfo var status: Int = 0,
+    @Ignore val details: List<OrderDetail>? = listOf()
     //@Relation(parentColumn = "id", entityColumn = "order_id", entity = OrderDetail::class)
-   /* @Ignore var details: List<OrderDetail> = listOf()*/) {
+   /* @Ignore var details: List<OrderDetail> = listOf()*/){
+    constructor(id: String,
+                sequence: Long,
+                creator: String,
+                client: String = "Client",
+                total: Double = 0.0,
+                subtotal: Double = 0.0,
+                tax: Double = 0.0,
+                tip: Double = 0.0,
+                itemsQuantity: Int = 0,
+                createdAt: String = "",
+                size: Int = 0, //People on table
+                status: Int = 0
+    ) : this(id, sequence, creator, client, total, subtotal, tax, tip, itemsQuantity, createdAt, size, status, null)
 }
 
 @Dao
@@ -44,10 +58,10 @@ interface OrderDao {
         insertDetails(details)
     }
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(orders: Orders)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDetails(orderDetails: List<OrderDetail>)
 
     @Delete
